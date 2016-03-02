@@ -41,7 +41,11 @@ var game = (function () {
     var spotLight;
     //Plane and cube components
     var plane;
-    var cube;
+    var baseCube;
+    var cube2;
+    var cube3;
+    var cube4;
+    var cube5;
     var planeGeometry;
     var planeMaterial;
     var cubeGeometry;
@@ -66,33 +70,33 @@ var game = (function () {
         //Add cubes
         cubeGeometry = new CubeGeometry(5, 1, 5);
         cubeMaterial = new LambertMaterial({ color: Math.random() * 0xffffff });
-        cube = new Mesh(cubeGeometry, cubeMaterial);
-        cube.position.set(0, 1, 0);
-        scene.add(cube);
+        baseCube = new Mesh(cubeGeometry, cubeMaterial);
+        baseCube.position.set(0, 1, 0);
+        scene.add(baseCube);
         console.log("Added base cube to scene");
         cubeGeometry = new CubeGeometry(4, 1, 4);
         cubeMaterial = new LambertMaterial({ color: Math.random() * 0xffffff });
-        cube = new Mesh(cubeGeometry, cubeMaterial);
-        cube.position.set(0, 2, 0);
-        scene.add(cube);
+        cube2 = new Mesh(cubeGeometry, cubeMaterial);
+        cube2.position.set(0, 2, 0);
+        scene.add(cube2);
         console.log("Added second cube to scene");
         cubeGeometry = new CubeGeometry(3, 1, 3);
         cubeMaterial = new LambertMaterial({ color: Math.random() * 0xffffff });
-        cube = new Mesh(cubeGeometry, cubeMaterial);
-        cube.position.set(0, 3, 0);
-        scene.add(cube);
+        cube3 = new Mesh(cubeGeometry, cubeMaterial);
+        cube3.position.set(0, 3, 0);
+        scene.add(cube3);
         console.log("Added third cube to scene");
         cubeGeometry = new CubeGeometry(2, 1, 2);
         cubeMaterial = new LambertMaterial({ color: Math.random() * 0xffffff });
-        cube = new Mesh(cubeGeometry, cubeMaterial);
-        cube.position.set(0, 4, 0);
-        scene.add(cube);
+        cube4 = new Mesh(cubeGeometry, cubeMaterial);
+        cube4.position.set(0, 4, 0);
+        scene.add(cube4);
         console.log("Added fourth cube to scene");
         cubeGeometry = new CubeGeometry(1, 1, 1);
         cubeMaterial = new LambertMaterial({ color: Math.random() * 0xffffff });
-        cube = new Mesh(cubeGeometry, cubeMaterial);
-        cube.position.set(0, 5, 0);
-        scene.add(cube);
+        cube5 = new Mesh(cubeGeometry, cubeMaterial);
+        cube5.position.set(0, 5, 0);
+        scene.add(cube5);
         console.log("Added top cube to scene");
         console.log("Added tower to scene");
         //Add lights
@@ -100,14 +104,13 @@ var game = (function () {
         scene.add(ambientLight);
         console.log("Added an Ambient Light to scene");
         spotLight = new SpotLight(0xffffff);
-        spotLight.position.set(0, 10, 0);
+        spotLight.position.set(-40, 50, 10);
         spotLight.castShadow = true;
-        spotLight.target = plane;
         scene.add(spotLight);
         console.log("Added a spotlight to scene");
         // add controls
         gui = new GUI();
-        control = new Control();
+        control = new Control(0.01, 0.01, 0.01, 0.01, 0.01);
         addControl(control);
         // Add framerate stats
         addStatsObject();
@@ -117,6 +120,11 @@ var game = (function () {
     }
     function addControl(controlObject) {
         /* ENTER CODE for the GUI CONTROL HERE */
+        gui.add(controlObject, 'rotateBaseCube', -0.5, 0.5);
+        gui.add(controlObject, 'rotateCube2', -0.5, 0.5);
+        gui.add(controlObject, 'rotateCube3', -0.5, 0.5);
+        gui.add(controlObject, 'rotateCube4', -0.5, 0.5);
+        gui.add(controlObject, 'rotateCube5', -0.5, 0.5);
     }
     function addStatsObject() {
         stats = new Stats();
@@ -129,6 +137,12 @@ var game = (function () {
     // Setup main game loop
     function gameLoop() {
         stats.update();
+        //Rotate cubes
+        baseCube.rotation.y += control.rotateBaseCube;
+        cube2.rotation.y += control.rotateCube2;
+        cube3.rotation.y += control.rotateCube3;
+        cube4.rotation.y += control.rotateCube4;
+        cube5.rotation.y += control.rotateCube5;
         // render using requestAnimationFrame
         requestAnimationFrame(gameLoop);
         // render the scene
