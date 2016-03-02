@@ -41,6 +41,17 @@ var game = (() => {
     var control: Control;
     var gui: GUI;
     var stats: Stats;
+    var axes: AxisHelper;
+    var ambientLight: AmbientLight;
+    var spotLight: SpotLight;
+    //Plane and cube components
+    var plane: Mesh;
+    var cube: Mesh;
+    var planeGeometry: PlaneGeometry;
+    var planeMaterial: LambertMaterial;
+    var cubeGeometry: CubeGeometry;
+    var cubeMaterial: LambertMaterial;
+    
 
     function init() {
         // Instantiate a new Scene object
@@ -52,8 +63,35 @@ var game = (() => {
 
 
         /* ENTER CODE HERE */
+        //Axis
+        axes = new AxisHelper(10);
+        scene.add(axes);
+        console.log("Added Axis Helper to scene");
+       
         
- 
+        //Add plane
+        planeGeometry = new PlaneGeometry(16, 16);
+        planeMaterial = new LambertMaterial({color: 0x248f24});
+        plane = new Mesh(planeGeometry, planeMaterial);
+        plane.rotation.x = -0.5 * (Math.PI);
+        scene.add(plane);
+        console.log("Added a Plane to scene");
+        
+        //Add cubes
+        
+        
+        //Add lights
+        ambientLight = new AmbientLight(0x8c8c8c);
+        scene.add(ambientLight);
+        console.log("Added an Ambient Light to scene");
+        
+        spotLight = new SpotLight(0xffffff);
+        spotLight.position.set(0, 5, 0);
+        spotLight.castShadow = true;
+        spotLight.target = plane;
+        scene.add(spotLight);
+        console.log("Added a spotlight to scene");
+        
         // add controls
         gui = new GUI();
         control = new Control();
