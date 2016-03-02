@@ -78,7 +78,42 @@ var game = (() => {
         console.log("Added a Plane to scene");
         
         //Add cubes
+        cubeGeometry = new CubeGeometry(5, 1, 5);
+        cubeMaterial = new LambertMaterial({color: Math.random() * 0xffffff});
+        cube = new Mesh(cubeGeometry,cubeMaterial);
+        cube.position.set(0, 1, 0);
+        scene.add(cube);
+        console.log("Added base cube to scene");
         
+        cubeGeometry = new CubeGeometry(4, 1, 4);
+        cubeMaterial = new LambertMaterial({color:Math.random() * 0xffffff});
+        cube = new Mesh(cubeGeometry,cubeMaterial);
+        cube.position.set(0, 2, 0);
+        scene.add(cube);
+        console.log("Added second cube to scene");
+        
+        cubeGeometry = new CubeGeometry(3, 1, 3);
+        cubeMaterial = new LambertMaterial({color: Math.random() * 0xffffff});
+        cube = new Mesh(cubeGeometry, cubeMaterial);
+        cube.position.set(0, 3, 0);
+        scene.add(cube);
+        console.log("Added third cube to scene");
+        
+        cubeGeometry = new CubeGeometry(2, 1, 2);
+        cubeMaterial = new LambertMaterial({color: Math.random() * 0xffffff});
+        cube = new Mesh(cubeGeometry, cubeMaterial);
+        cube.position.set(0, 4, 0);
+        scene.add(cube);
+        console.log("Added fourth cube to scene");
+        
+        cubeGeometry = new CubeGeometry(1, 1, 1);
+        cubeMaterial = new LambertMaterial({color: Math.random() * 0xffffff});
+        cube = new Mesh(cubeGeometry, cubeMaterial);
+        cube.position.set(0, 5, 0);
+        scene.add(cube);
+        console.log("Added top cube to scene");
+        
+        console.log("Added tower to scene");
         
         //Add lights
         ambientLight = new AmbientLight(0x8c8c8c);
@@ -86,7 +121,7 @@ var game = (() => {
         console.log("Added an Ambient Light to scene");
         
         spotLight = new SpotLight(0xffffff);
-        spotLight.position.set(0, 5, 0);
+        spotLight.position.set(0, 10, 0);
         spotLight.castShadow = true;
         spotLight.target = plane;
         scene.add(spotLight);
