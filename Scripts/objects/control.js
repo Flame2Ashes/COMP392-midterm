@@ -1,4 +1,8 @@
 /// <reference path="../../typings/tsd.d.ts"/>
+//Filename: control.ts
+//Author: Angelina Gutierrez
+//Last Modified: 03/02/2016
+//Description: Allows rotation of individual cubes
 var objects;
 (function (objects) {
     // CONTROL CLASS ++++++++++++++++++++++++++++++++++++++++++
